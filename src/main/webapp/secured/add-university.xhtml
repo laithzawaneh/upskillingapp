@@ -1,0 +1,42 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Add University</ui:define>
+	<ui:define name="content">
+		<div align="center">
+			<h:form id="form">
+				<p:growl showDetail="true">
+					<p:autoUpdate />
+				</p:growl>
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_adduniversty}" />
+					</f:facet>
+					<ui:remove>
+						<p:outputLabel value="#{msg.lbl_universityid}" for="id" />
+						<p:inputNumber id="id" value="#{mbAddUniversity.university.universtyId}" decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
+							required="true" requiredMessage="Please enter university id" />
+					</ui:remove>
+					<p:outputLabel value="#{msg.lbl_universityaname}" for="aName" />
+					<p:inputText id="aName" value="#{mbAddUniversity.university.aName}" required="true" requiredMessage="Please enter uneversity aName"
+						maxlength="50" validatorMessage="Please check aName" />
+
+					<p:outputLabel value="#{msg.lbl_universityename}" for="eName" />
+					<p:inputText id="eName" value="#{mbAddUniversity.university.eName}" required="true" requiredMessage="Please enter university eName"
+						maxlength="50" validatorMessage="Please check eName" />
+
+					<p:outputLabel value="#{msg.lbl_universitywebsite}" for="website" />
+					<p:inputText id="website" value="#{mbAddUniversity.university.website}" required="true" requiredMessage="Please enter website"
+						maxlength="40" validatorMessage="Please check Website" />
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.btn_save}" action="#{mbAddUniversity.save()}" ajax="false" />
+					</f:facet>
+
+				</p:panelGrid>
+
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,56 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+	<ui:define name="title">Add Emp</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form">
+			<p:growl showDetail="true">
+				<p:autoUpdate />
+			</p:growl>
+
+			<p:panelGrid columns="2">
+				<f:facet name="header">
+					<h:outputText value="Add Employee" />
+				</f:facet>
+
+				<p:outputLabel value="ID" for="id" />
+				<p:inputNumber id="id" value="#{mbAddEmp.emp.id}" decimalPlaces="0" decimalSeparator=" " required="true"
+					requiredMessage="Please Enter ID" />
+
+				<p:outputLabel value="Name" for="name" />
+				<p:inputText id="name" value="#{mbAddEmp.emp.name}" maxlength="10" required="true" requiredMessage="Please Enter Name" />
+
+				<p:outputLabel value="Job" for="job" />
+				<p:selectOneMenu id="job" value="#{mbAddEmp.emp.job}" required="true" requiredMessage="Please Choose job from list">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{mbAddEmp.jobTable}" var="j" itemLabel="#{j}" itemValue="#{j}" />
+				</p:selectOneMenu>
+
+
+				<p:outputLabel value="Hire Date" for="hiredate" />
+				<p:calendar id="hiredate" value="#{mbAddEmp.emp.hireDate}" pattern="yy/MM/yyy" required="true"
+					requiredMessage="Please Enter Pick a date" />
+
+				<p:outputLabel value="Salary" for="sal" />
+				<p:spinner id="sal" value="#{mbAddEmp.emp.salary}" min="500" max="5000" stepFactor="50" required="true"
+					requiredMessage="Please Enter the salary" />
+
+				<p:outputLabel value="Commission" for="com" />
+				<p:spinner id="com" value="#{mbAddEmp.emp.commission}" min="0" max="50" />
+
+				<p:outputLabel value="Department" for="dept" />
+				<p:selectOneMenu id="dept" value="#{mbAddEmp.emp.dept.id}" required="true" requiredMessage="Select Department">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{mbAddEmp.deptTable}" var="d" itemLabel="#{d.name}" itemValue="#{d.id}" />
+				</p:selectOneMenu>
+
+				<f:facet name="footer">
+					<p:commandButton value="Save" action="#{mbAddEmp.save()}" ajax="false" />
+				</f:facet>
+			</p:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+

@@ -1,0 +1,65 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+	<ui:define name="title">Dept</ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<p:panel>
+				<p:dataTable value="#{mbDept.deptTable}" var="e">
+					<f:facet name="header">
+						<h:outputText value="Department" />
+					</f:facet>
+
+
+					<p:column headerText="Dept Id" sortBy="#{e.id}">
+						<h:outputText value="#{e.id}" />
+					</p:column>
+
+					<p:column headerText="Dept Name" sortBy="#{e.name}">
+						<h:outputText value="#{e.name}" />
+					</p:column>
+
+					<p:column headerText="Dept Location" sortBy="#{e.location}">
+						<h:outputText value="#{e.location}" />
+					</p:column>
+
+					<p:column headerText="Edit">
+						<p:commandButton value="..." update=":form:editPnl" onclick="PF('deptDlg').show()">
+							<f:setPropertyActionListener value="#{e}" target="#{mbDept.selectedDept}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="remove">
+						<p:commandButton value="X" action="#{mbDept.removeDept()}" ajax="false">
+							<f:setPropertyActionListener value="#{e}" target="#{mbDept.selectedDept}" />
+						</p:commandButton>
+					</p:column>
+
+
+					<f:facet name="footer">
+						<h:outputText value="In total there are #{mbDept.deptTable.size()} department" />
+					</f:facet>
+				</p:dataTable>
+			</p:panel>
+
+			<p:dialog header="Edit Department" widgetVar="deptDlg">
+				<p:panelGrid id="editPnl" columns="2">
+
+					<p:outputLabel value="Dept Id" />
+					<h:outputText value="#{mbDept.selectedDept.id}" />
+
+					<p:outputLabel value="Name" />
+					<p:inputText value="#{mbDept.selectedDept.name}" />
+
+					<p:outputLabel value="Location" />
+					<p:inputText value="#{mbDept.selectedDept.location}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Save" action="#{mbDept.updateDept()}" ajax="false" />
+						<p:commandButton value="Back" type="button" onclick="PF('deptDlg').hide()" />
+					</f:facet>
+				</p:panelGrid>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
+

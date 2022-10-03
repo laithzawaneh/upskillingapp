@@ -1,0 +1,67 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">School</ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<p:panel>
+				<p:dataTable value="#{mbSchool.schoolTable}" var="e">
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_School}" />
+					</f:facet>
+
+
+					<p:column headerText="#{msg.lbl_schoolid}" sortBy="#{e.schoolId}">
+						<h:outputText value="#{e.schoolId}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_schoolaname}" sortBy="#{e.aName}">
+						<h:outputText value="#{e.aName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_schoolename}" sortBy="#{e.eName}">
+						<h:outputText value="#{e.eName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_edit}">
+						<p:commandButton value="..." update=":form:editPnl" onclick="PF('schoolDlg').show()">
+							<f:setPropertyActionListener value="#{e}" target="#{mbSchool.selectedSchool}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_remove}">
+						<p:commandButton value="X" action="#{mbSchool.removeSchool()}" ajax="false">
+							<f:setPropertyActionListener value="#{e}" target="#{mbSchool.selectedSchool}" />
+						</p:commandButton>
+					</p:column>
+
+
+					<f:facet name="footer">
+						<h:outputText value="#{msg.lbl_total} #{mbSchool.schoolTable.size()} " />
+					</f:facet>
+				</p:dataTable>
+			</p:panel>
+
+			<p:dialog header="#{msg.lbl_edit}" widgetVar="schoolDlg">
+				<p:panelGrid id="editPnl" columns="2">
+
+					<p:outputLabel value="#{msg.lbl_schoolid}" />
+					<h:outputText value="#{mbSchool.selectedSchool.schoolId}" />
+
+					<p:outputLabel value="#{msg.lbl_schoolaname}" />
+					<p:inputText value="#{mbSchool.selectedSchool.aName}" />
+
+					<p:outputLabel value="#{msg.lbl_schoolename}" />
+					<p:inputText value="#{mbSchool.selectedSchool.eName}" />
+
+
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.btn_save}" action="#{mbSchool.updateSchool()}" ajax="false" />
+						<p:commandButton value="#{msg.btn_back}" type="button" onclick="PF('schoolDlg').hide()" />
+					</f:facet>
+				</p:panelGrid>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

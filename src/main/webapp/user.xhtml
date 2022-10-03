@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="#{mbSec.lang}" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+<f:view locale="#{mbSec.lang}">
+	<h:head>
+		<title><ui:insert name="title">upskilling APP</ui:insert></title>
+		<link rel="icon" type="image/png" href="#{resource['icons/icon.png']}" />
+	</h:head>
+	<h:body dir="#{mbSec.dir}">
+
+		<h:outputStylesheet name="java.css" library="css" />
+		<p:panel id="pnl" style="min-height: 400px;">
+			<ui:include src="/WEB-INF/include/header.xhtml"></ui:include>
+			<h:form id="form">
+				<div align="center">
+					<p:growl showSummary="false" showDetail="true" life="8000">
+						<p:autoUpdate />
+					</p:growl>
+
+					<p:panelGrid id="pnlGrid" columns="2">
+						<f:facet name="header">
+							<h2>
+								<h:outputText value="Registration Form" />
+							</h2>
+						</f:facet>
+						<ui:remove>
+							<p:outputLabel value="userId" />
+							<p:inputText value="#{mbUser.user.userId}" validatorMessage="Please check your mobile number">
+							</p:inputText>
+						</ui:remove>
+						<p:outputLabel value="First Name" />
+						<p:inputText value="#{mbUser.user.fName}" required="true" requiredMessage="Please enter first name"
+							validatorMessage="First name must be between 3 and 20 characters">
+							<f:validateLength minimum="3" maximum="20" />
+						</p:inputText>
+
+						<p:outputLabel value="Last Name" />
+						<p:inputText value="#{mbUser.user.lName}" required="true" requiredMessage="Please enter last name"
+							validatorMessage="Last name must be between 3 and 20 characters">
+							<f:validateLength minimum="3" maximum="20" />
+						</p:inputText>
+
+						<p:outputLabel value="Sex" />
+						<p:selectOneRadio value="#{mbUser.user.sex}">
+							<f:selectItem itemLabel="Male" itemValue="Male" />
+							<f:selectItem itemLabel="Female" itemValue="Female" />
+						</p:selectOneRadio>
+
+
+						<p:outputLabel value="Email" />
+						<p:inputText value="#{mbUser.user.email}" validatorMessage="Please check email address">
+							<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+						</p:inputText>
+
+						<p:outputLabel value="Password" />
+						<p:password value="#{mbUser.user.password}" match="cpwd" validatorMessage="Password not match" feedback="true" />
+
+						<p:outputLabel value="Confirm" />
+						<p:password id="cpwd" value="#{mbUser.user.password}" />
+
+						<p:outputLabel value="Birth Date" />
+						<p:calendar value="#{mbUser.user.date}" pattern="dd/MM/yyyy" yearRange="c-40:c+10" navigator="true" mindate="01/01/1970" maxdate="01/01/2030"/>
+
+						<p:outputLabel value="Country" />
+						<p:selectOneMenu value="#{mbUser.user.country}">
+							<f:selectItem itemLabel="Select one" itemValue="" />
+							<f:selectItem itemLabel="Jordan" itemValue="Jordan" />
+							<f:selectItem itemLabel="Iraq" itemValue="Iraq" />
+							<f:selectItem itemLabel="Syria" itemValue="Syria" />
+						</p:selectOneMenu>
+
+
+
+						<f:facet name="footer">
+							<p:selectBooleanCheckbox value="#{mbUser.accept}" itemLabel="Accept terms and conditions">
+								<p:ajax event="change" update="btn_signup" />
+							</p:selectBooleanCheckbox>
+
+							<p:commandButton id="btn_signup" value="Signup" action="#{mbUser.signUp}"  disabled="#{!mbUser.accept}" process=":form:pnlGrid" ajax="false"/>
+						</f:facet>
+
+					</p:panelGrid>
+
+				</div>
+			</h:form>
+
+			<f:facet name="footer">
+				<p:outputLabel value="#{msg.lbl_copyright}" styleClass="footer" />
+			</f:facet>
+		</p:panel>
+
+	</h:body>
+</f:view>
+</html>

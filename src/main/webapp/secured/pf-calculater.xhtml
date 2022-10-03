@@ -1,0 +1,35 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+	<ui:define name="title">Pf-calculater</ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+
+			<p:panelGrid columns="2">
+				<f:facet name="header">Calculater</f:facet>
+
+				<p:outputLabel value="Number1" for="n1" />
+				<p:inputText id="n1" value="#{mbcalc.number1}" required="true" requiredMessage="Enter number 1" />
+
+				<p:outputLabel value="Number2" for="n2" />
+				<p:inputText id="n2" value="#{mbcalc.number2}" required="true" requiredMessage="Enter number 2" />
+
+				<p:outputLabel value="Result" />
+				<h:outputText id="rslt" value="#{mbcalc.result}" />
+
+
+
+
+				<f:facet name="footer">
+					<p:commandButton action="#{mbcalc.add()}" value="+" ajax="false" />
+					<p:commandButton action="#{mbcalc.substract()}" value="-" ajax="false" />
+					<p:commandButton action="#{mbcalc.multiply()}" value="*" ajax="false" />
+					<p:commandButton action="#{mbcalc.divide()}" value="/" ajax="false" />
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+

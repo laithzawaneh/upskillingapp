@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+	<h:form id="menuForm">
+		<p:menubar styleClass="#{mbSec.lang.equals('ar')?'ui-menu-ar':'ui-menu-en'}">
+			<p:menuitem value="#{msg.btn_home}" outcome="/home.xhtml" />
+			<ui:remove>
+				<p:submenu label="Basic">
+					<p:menuitem value="Welcome" outcome="/secured/welcome.xhtml" />
+					<p:menuitem value="Calculator" outcome="/secured/calculater.xhtml" />
+					<p:menuitem value="PF Calculator" outcome="/secured/pf-calculater.xhtml" />
+					<p:menuitem value="Components" outcome="/secured/pf-components.xhtml" />
+					<p:menuitem value="Panels" outcome="/secured/pf-component-panels.xhtml" />
+				</p:submenu>
+
+				<p:submenu label="Database">
+					<p:menuitem value="Dept" outcome="/secured/dept.xhtml" />
+					<p:menuitem value="Emp" outcome="/secured/emp.xhtml" />
+					<p:menuitem value="Add Dept" outcome="/secured/add-dept.xhtml" />
+					<p:menuitem value="Add Emp" outcome="/secured/add-emp.xhtml" />
+				</p:submenu>
+
+				<p:submenu label="JSF Websites">
+					<p:menuitem value="Primefaces" url="https://primefaces.org/" target="_blank" />
+
+					<p:menuitem value="Primefaces User Guide" url="https://www.primefaces.org/docs/guide/primefaces_user_guide_6_2.pdf" target="_blank" />
+					<p:menuitem value="Omnifaces" url="https://omnifaces.org/" target="_blank" />
+					<p:menuitem value="Geeks for Geeks" url="https://www.geeksforgeeks.org/" target="_blank" />
+					<p:menuitem value="Javat Point" url="https://www.javatpoint.com/" target="_blank" />
+				</p:submenu>
+			</ui:remove>
+
+			<p:submenu label="#{msg.btn_tables}">
+				<p:menuitem value="#{msg.btn_universities}" outcome="/secured/university.xhtml" />
+				<p:menuitem value="#{msg.btn_schools}" outcome="/secured/school.xhtml" />
+				<p:menuitem value="#{msg.btn_programs}" outcome="/secured/program.xhtml" />
+				<p:menuitem value="#{msg.btn_students}" outcome="/secured/student.xhtml" />
+				<p:menuitem value="#{msg.btn_studentresults}" outcome="/secured/student-result.xhtml" />
+				<p:menuitem value="#{msg.btn_studenttrainingcourse}" outcome="/secured/student-training-course.xhtml" />
+				<p:menuitem value="#{msg.btn_trainingcourse}" outcome="/secured/trainingcourse.xhtml" />
+			</p:submenu>
+			
+			<p:submenu label="#{msg.btn_addtables}">
+				<p:menuitem value="#{msg.btn_adduniversities}" outcome="/secured/add-university.xhtml" />
+				<p:menuitem value="#{msg.btn_addschools}" outcome="/secured/add-school.xhtml" />
+				<p:menuitem value="#{msg.btn_addprograms}" outcome="/secured/add-program.xhtml" />
+				<p:menuitem value="#{msg.btn_addstudents}" outcome="/secured/add-student.xhtml" />
+				<p:menuitem value="#{msg.btn_addstudentresults}" outcome="/secured/add-student-result.xhtml" />
+				<p:menuitem value="#{msg.btn_addstudenttrainingcourse}" outcome="/secured/add-student-training-course.xhtml" />
+				<p:menuitem value="#{msg.btn_addtrainingcourse}" outcome="/secured/add-trainingcourse.xhtml" />
+			</p:submenu>
+			
+			
+			<p:menuitem value="#{msg.btn_logout}" action="#{mbSec.logout()}" ajax="false" />
+
+		</p:menubar>
+	</h:form>
+
+	<br />
+</ui:composition>

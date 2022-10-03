@@ -1,0 +1,45 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Add Program</ui:define>
+	<ui:define name="content">
+		<div align="center">
+			<h:form id="form">
+				<p:growl showDetail="true">
+					<p:autoUpdate />
+				</p:growl>
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_addprogram}" />
+					</f:facet>
+
+					<p:outputLabel value="#{msg.lbl_schoolname}" for="school" />
+					<p:selectOneMenu id="school" value="#{mbAddProgram.program.school.schoolId}" required="true" requiredMessage="Select School">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{mbAddProgram.schoolTable}" var="d" itemLabel="#{d.eName}" itemValue="#{d.schoolId}" />
+					</p:selectOneMenu>
+					<ui:remove>
+						<p:outputLabel value="#{msg.lbl_programId}" for="pid" />
+						<p:inputNumber id="pid" value="#{mbAddProgram.program.programlId}" decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
+							required="true" requiredMessage="Please enter program id" />
+					</ui:remove>
+					<p:outputLabel value="#{msg.lbl_programaname}" for="aName" />
+					<p:inputText id="aName" value="#{mbAddProgram.program.aName}" required="true" requiredMessage="Please enter program aName"
+						maxlength="14" validatorMessage="Please check aName" />
+
+					<p:outputLabel value="#{msg.lbl_Programename}" for="eName" />
+					<p:inputText id="eName" value="#{mbAddProgram.program.eName}" required="true" requiredMessage="Please enter program eName"
+						maxlength="14" validatorMessage="Please check eName" />
+
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.btn_save}" action="#{mbAddProgram.save()}" ajax="false" />
+					</f:facet>
+
+				</p:panelGrid>
+
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

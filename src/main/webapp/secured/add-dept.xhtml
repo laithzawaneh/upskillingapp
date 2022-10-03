@@ -1,0 +1,36 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+	<ui:define name="title">Add Dept</ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<p:growl showDetail="true">
+				<p:autoUpdate />
+			</p:growl>
+
+			<p:panelGrid columns="2">
+				<f:facet name="header">
+					<h:outputText value="Add Department" />
+				</f:facet>
+
+				<p:outputLabel value="ID" for="id" />
+				<p:inputNumber id="id" value="#{mbAddDept.dept.id}" decimalPlaces="0" decimalSeparator=" " thousandSeparator=" " required="true"
+					requiredMessage="Please enter department id" />
+
+				<p:outputLabel value="Name" for="name" />
+				<p:inputText id="name" value="#{mbAddDept.dept.name}" required="true" requiredMessage="Please enter department name" maxlength="14"
+					validatorMessage="Please check name" />
+
+				<p:outputLabel value="Location" for="loc" />
+				<p:inputText id="loc" value="#{mbAddDept.dept.location}" required="true" requiredMessage="Please enter location" maxlength="13"
+					validatorMessage="Please check location" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Save" action="#{mbAddDept.save()}" ajax="false" />
+				</f:facet>
+
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body style="background:skyblue;">
+	<h:form style="width:580px; height:200px; margin-left:450px; margin-top:8%;">
+		<p:growl showDetail="true" life="6000">
+			<p:autoUpdate />
+		</p:growl>
+
+		<p:panelGrid columns="2">
+			<f:facet name="header">Registration</f:facet>
+			<p:outputLabel value="First Name" />
+			<p:inputText value="#{mbreg.user.fName}" required="true" requiredMessage="Enter First Name"
+				validatorMessage="First name must be between 3 and 20 character">
+				<f:validateLength minimum="3" maximum="20" />
+			</p:inputText>
+
+
+			<p:outputLabel value="Last Name" />
+			<p:inputText value="#{mbreg.user.lName}" required="true" validatorMessage="Last name must be between 3 and 20 character">
+				<f:validateLength minimum="3" maximum="20" />
+			</p:inputText>
+
+
+			<p:outputLabel value="Expected Salary" />
+			<p:inputText value="#{mbreg.user.expectedSalary}" required="true" validatorMessage="Expected salary should be between 500 and 5000">
+				<f:validateDoubleRange minimum="500.0" maximum="5000.0" />
+			</p:inputText>
+
+
+			<p:outputLabel value="Sex" />
+			<p:selectOneRadio value="#{mbreg.user.sex}" required="true">
+				<f:selectItem itemLabel="Mail" itemValue="1" />
+				<f:selectItem itemLabel="Femail" itemValue="2" />
+			</p:selectOneRadio>
+
+			<p:outputLabel value="Mobile" />
+			<p:inputText value="#{mbreg.user.mobile}" required="true" validatorMessage="Please check your mobile number">
+				<f:validateRegex pattern="^07[789][0-9]{7}$" />
+			</p:inputText>
+
+
+
+
+			<p:outputLabel value="Birth Date" />
+			<p:calendar value="#{mbreg.user.date}" required="true" />
+
+			<p:outputLabel value="Country" />
+			<p:selectOneMenu value="#{mbreg.user.country}">
+				<f:selectItem itemLabel="Select One" itemValue="1" />
+				<f:selectItem itemLabel="Jordan" itemValue="2" />
+				<f:selectItem itemLabel="Iraq" itemValue="3" />
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Email Address" />
+			<p:inputText value="#{mbreg.user.email}" required="true" validatorMessage="Please check your email address">
+				<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+			</p:inputText>
+
+
+
+			<p:outputLabel value="Password" />
+			<p:password id="pw1" value="#{mbreg.user.password}" feedback="true" match="pw2" required="true" validatorMessage="Password Not Match" />
+			<p:outputLabel value="Confirm Password" />
+			<p:password id="pw2" value="#{mbreg.user.password}" feedback="true" required="true" />
+
+			<h:panelGroup>
+				<p:selectBooleanCheckbox value="#{mbreg.accept}" />
+				<p:outputLabel value="Accept terms and condition." />
+			</h:panelGroup>
+
+			<f:facet name="footer">
+				<p:commandButton value="SIGN UP" action="#{mbreg.submit()}" ajax="false" />
+			</f:facet>
+		</p:panelGrid>
+
+
+	</h:form>
+</h:body>
+</html>

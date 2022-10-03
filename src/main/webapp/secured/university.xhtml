@@ -1,0 +1,70 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">University</ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<p:panel>
+				<p:dataTable value="#{mbUniversity.universityTable}" var="e">
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_universities}" />
+					</f:facet>
+
+					<p:column headerText="#{msg.lbl_universityid}" sortBy="#{e.universtyId}">
+						<h:outputText value="#{e.universtyId}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_universityaname}" sortBy="#{e.aName}">
+						<h:outputText value="#{e.aName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_universityename}" sortBy="#{e.eName}">
+						<h:outputText value="#{e.eName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_universitywebsite}" sortBy="#{e.website}">
+						<p:link href="#{e.website}" value="#{e.eName} Website" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_edit}">
+						<p:commandButton value="..." update=":form:editPnl" onclick="PF('universityDlg').show()">
+							<f:setPropertyActionListener value="#{e}" target="#{mbUniversity.selectedUniversity}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_remove}">
+						<p:commandButton value="X" action="#{mbUniversity.removeUniversity()}" ajax="false">
+							<f:setPropertyActionListener value="#{e}" target="#{mbUniversity.selectedUniversity}" />
+						</p:commandButton>
+					</p:column>
+
+					<f:facet name="footer">
+						<h:outputText value="#{msg.lbl_total} #{mbUniversity.universityTable.size()}" />
+					</f:facet>
+				</p:dataTable>
+			</p:panel>
+
+			<p:dialog header="#{msg.lbl_edit}" widgetVar="universityDlg">
+				<p:panelGrid id="editPnl" columns="2">
+
+					<p:outputLabel value="#{msg.lbl_universityid}" />
+					<h:outputText value="#{mbUniversity.selectedUniversity.universtyId}" />
+
+					<p:outputLabel value="#{msg.lbl_universityaname}" />
+					<p:inputText value="#{mbUniversity.selectedUniversity.aName}" />
+
+					<p:outputLabel value="#{msg.lbl_universityename}" />
+					<p:inputText value="#{mbUniversity.selectedUniversity.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_universitywebsite}" />
+					<p:inputText value="#{mbUniversity.selectedUniversity.website}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.btn_save}" action="#{mbUniversity.updateUniversity()}" ajax="false" />
+						<p:commandButton value="#{msg.btn_back}" type="button" onclick="PF('universityDlg').hide()" />
+					</f:facet>
+				</p:panelGrid>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

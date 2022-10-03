@@ -1,0 +1,66 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Add Student Result</ui:define>
+	<ui:define name="content">
+		<div align="center">
+			<h:form id="form">
+				<p:growl showDetail="true">
+					<p:autoUpdate />
+				</p:growl>
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_addstudentresult}" />
+					</f:facet>
+
+					<p:outputLabel value="#{msg.lbl_studentname}" for="student" />
+					<p:selectOneMenu id="student" value="#{mbAddStudentResult.studentResult.student.studentId}" required="true"
+						requiredMessage="Select Student Name">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{mbAddStudentResult.studentTable}" var="d" itemLabel="#{d.eName}" itemValue="#{d.studentId}" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="#{msg.lbl_coursename}" for="course" />
+					<p:selectOneMenu id="course" value="#{mbAddStudentResult.studentResult.trainingCourse.courseId}" required="true"
+						requiredMessage="Select Course Name">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{mbAddStudentResult.courseTable}" var="d" itemLabel="#{d.eName}" itemValue="#{d.courseId}" />
+					</p:selectOneMenu>
+
+					<ui:remove>
+						<p:outputLabel value="Student ID" for="studentid" />
+						<p:inputNumber id="studentid" value="#{mbAddStudentResult.studentResult.studentId}" decimalPlaces="0" decimalSeparator=" "
+							thousandSeparator=" " required="true" requiredMessage="Please enter student id" />
+
+						<p:outputLabel value="Course Id" for="courseid" />
+						<p:inputNumber id="courseid" value="#{mbAddStudentResult.studentResult.courseId}" decimalPlaces="0" decimalSeparator=" "
+							thousandSeparator=" " required="true" requiredMessage="Please enter course id" />
+					</ui:remove>
+					<p:outputLabel value="#{msg.lbl_englishmark}" for="Emark" />
+					<p:inputNumber id="Emark" value="#{mbAddStudentResult.studentResult.englishMark}" decimalPlaces="0" decimalSeparator=" "
+						thousandSeparator=" " required="true" requiredMessage="Please enter English mark" />
+
+					<p:outputLabel value="#{msg.lbl_interviwemark}" for="Imark" />
+					<p:inputNumber id="Imark" value="#{mbAddStudentResult.studentResult.interviewMark}" decimalPlaces="0" decimalSeparator=" "
+						thousandSeparator=" " required="true" requiredMessage="Please enter Interview Mark" />
+
+					<p:outputLabel value="#{msg.lbl_acceptedflag}" for="acceptedFlag" />
+					<p:inputNumber id="acceptedFlag" value="#{mbAddStudentResult.studentResult.acceptedFlag}" decimalPlaces="0" decimalSeparator=" "
+						thousandSeparator=" " required="true" requiredMessage="Please enter Accepted Flag" />
+
+					<p:outputLabel value="#{msg.lbl_notes}" for="notes" />
+					<p:inputTextarea id="notes" value="#{mbAddStudentResult.studentResult.notes}" required="true" requiredMessage="Please enter notes"
+						maxlength="50" validatorMessage="Please enter notes" />
+
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.btn_save}" action="#{mbAddStudentResult.save()}" ajax="false" />
+					</f:facet>
+
+				</p:panelGrid>
+
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

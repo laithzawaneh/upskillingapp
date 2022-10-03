@@ -1,0 +1,107 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Add Student</ui:define>
+	<ui:define name="content">
+		<div align="center">
+			<h:form id="form">
+				<p:growl showDetail="true">
+					<p:autoUpdate />
+				</p:growl>
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_addstudent}" />
+					</f:facet>
+					<ui:remove>
+						<p:outputLabel value="#{msg.lbl_studentid}" for="id" />
+						<p:inputNumber id="id" value="#{mbAddStudent.student.studentId}" decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
+							required="true" requiredMessage="Please enter student id" />
+					</ui:remove>
+					<p:outputLabel value="#{msg.lbl_studentaname}" for="aName" />
+					<p:inputText id="aName" value="#{mbAddStudent.student.aName}" required="true" requiredMessage="Please enter student aName"
+						maxlength="14" validatorMessage="Please check aName" />
+
+					<p:outputLabel value="#{msg.lbl_studentename}" for="eName" />
+					<p:inputText id="eName" value="#{mbAddStudent.student.eName}" required="true" requiredMessage="Please enter school eName"
+						maxlength="14" validatorMessage="Please check eName" />
+
+					<p:outputLabel value="#{msg.lbl_mobile}" for="mobile" />
+					<p:inputText id="mobile" value="#{mbAddStudent.student.mobile}" required="true" requiredMessage="Please enter student mobile"
+						maxlength="14" validatorMessage="Please enter student mobile" />
+
+					<p:outputLabel value="#{msg.lbl_birthdate}" for="BD" />
+					<p:calendar id="BD" value="#{mbAddStudent.student.birthDate}" required="true" navigator="true" pattern="dd/MM/yyyy" yearRange="c-40:c+10" mindate="01/01/1990" maxdate="01/01/2010" requiredMessage="Please enter Birthdate" maxlength="14"
+						validatorMessage="Please check Birthdate" />
+
+					<p:outputLabel value="#{msg.lbl_sex}" for="sex" />
+					<p:selectOneRadio id="sex" value="#{mbAddStudent.student.sex}">
+						<f:selectItem itemLabel="male" itemValue="male" />
+						<f:selectItem itemLabel="female" itemValue="female" />
+					</p:selectOneRadio>
+
+					<ui:remove>
+						<p:inputNumber id="sex" value="#{mbAddStudent.student.sex}" decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
+							required="true" requiredMessage="Please enter sex" />
+					</ui:remove>
+
+
+
+
+
+					<p:outputLabel value="#{msg.lbl_email}" for="email" />
+					<p:inputText id="email" value="#{mbAddStudent.student.email}" required="true" requiredMessage="Please enter Email" maxlength="50"
+						validatorMessage="Please check email" />
+
+
+					<p:outputLabel value="#{msg.lbl_universityname}" for="university" />
+					<p:selectOneMenu id="university" value="#{mbAddStudent.student.university.universtyId}" required="true"
+						requiredMessage="Select University">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{mbAddStudent.universityTable}" var="d" itemLabel="#{d.eName}" itemValue="#{d.universtyId}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_schoolname}" for="school" />
+					<p:selectOneMenu id="school" value="#{mbAddStudent.student.school.schoolId}" required="true" requiredMessage="Select School">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{mbAddStudent.schoolTable}" var="d" itemLabel="#{d.eName}" itemValue="#{d.schoolId}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_programname}" for="program" />
+					<p:selectOneMenu id="program" value="#{mbAddStudent.student.program.programlId}" required="true" requiredMessage="Select Program">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{mbAddStudent.programTable}" var="d" itemLabel="#{d.eName}" itemValue="#{d.programlId}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_finalavg}" for="finalavg" />
+					<p:inputNumber id="finalavg" value="#{mbAddStudent.student.finalAverage}" decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
+						required="true" requiredMessage="Please enter final Avg" />
+
+
+					<p:outputLabel value="#{msg.lbl_maxavg}" for="maxavg" />
+					<p:inputNumber id="maxavg" value="#{mbAddStudent.student.maxAverage}" decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
+						required="true" requiredMessage="Please enter Max Avg" />
+
+
+					<p:outputLabel value="#{msg.lbl_rate}" for="rate" />
+					<p:inputText id="rate" value="#{mbAddStudent.student.rate}" required="true" requiredMessage="Please enter Rate" maxlength="14"
+						validatorMessage="Please check Rate" />
+
+					<p:outputLabel value="#{msg.lbl_graduateyear}" for="gradyear" />
+					<p:inputNumber id="gradyear" value="#{mbAddStudent.student.graduateYear}" decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
+						required="true" requiredMessage="Please enter Graduate Year" />
+
+
+					<p:outputLabel value="#{msg.lbl_graduatesemester}" for="gradsem" />
+					<p:inputNumber id="gradsem" value="#{mbAddStudent.student.graduateSem}" decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
+						required="true" requiredMessage="Please enter Graduate sem" />
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.btn_save}" action="#{mbAddStudent.save()}" ajax="false" />
+					</f:facet>
+
+				</p:panelGrid>
+
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,183 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Student</ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<p:panel>
+				<p:dataTable value="#{mbStudent.studentTable}" var="e">
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_student}" />
+					</f:facet>
+					<p:column headerText="#{msg.lbl_studentid}" sortBy="#{e.studentId}">
+						<h:outputText value="#{e.studentId}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_studentaname}" sortBy="#{e.aName}">
+						<h:outputText value="#{e.aName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_studentename}" sortBy="#{e.eName}">
+						<h:outputText value="#{e.eName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_mobile}" sortBy="#{e.mobile}">
+						<h:outputText value="#{e.mobile}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_birthdate}" sortBy="#{e.birthDate}">
+						<h:outputText value="#{e.birthDate}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_sex}" sortBy="#{e.sex}">
+						<h:outputText value="#{e.sex}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_email}" sortBy="#{e.email}">
+						<h:outputText value="#{e.email}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_moreinfo}">
+						<p:commandButton value="#{msg.lbl_moreinfo}" update=":form:moreinfoPnl" onclick="PF('moreinfostudentDlg').show()">
+							<f:setPropertyActionListener value="#{e}" target="#{mbStudent.selectedStudent}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_edit}">
+						<p:commandButton value="..." update=":form:editPnl" onclick="PF('studentDlg').show()">
+							<f:setPropertyActionListener value="#{e}" target="#{mbStudent.selectedStudent}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_remove}">
+						<p:commandButton value="X" action="#{mbStudent.removeStudent()}" ajax="false">
+							<f:setPropertyActionListener value="#{e}" target="#{mbStudent.selectedStudent}" />
+						</p:commandButton>
+					</p:column>
+
+
+					<f:facet name="footer">
+						<h:outputText value="#{msg.lbl_total} #{mbStudent.studentTable.size()}" />
+					</f:facet>
+				</p:dataTable>
+
+				<ui:remove>
+					<p:commandButton value="send email" update=":form:sendemailPnl" onclick="PF('sendemailDlg').show()" />
+				</ui:remove>
+			</p:panel>
+
+			<p:dialog header="#{msg.lbl_moreinfo}" widgetVar="moreinfostudentDlg">
+				<p:panelGrid id="moreinfoPnl" columns="2">
+					<p:outputLabel value="#{msg.lbl_universityname}" />
+					<h:outputText value="#{mbStudent.selectedStudent.university.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_schoolname}" />
+					<h:outputText value="#{mbStudent.selectedStudent.school.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_programname}" />
+					<h:outputText value="#{mbStudent.selectedStudent.program.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_finalavg}" />
+					<h:outputText value="#{mbStudent.selectedStudent.finalAverage}" />
+
+					<p:outputLabel value="#{msg.lbl_maxavg}" />
+					<h:outputText value="#{mbStudent.selectedStudent.maxAverage}" />
+
+					<p:outputLabel value="#{msg.lbl_rate}" />
+					<h:outputText value="#{mbStudent.selectedStudent.rate}" />
+
+					<p:outputLabel value="#{msg.lbl_graduateyear}" />
+					<h:outputText value="#{mbStudent.selectedStudent.graduateYear}" />
+
+					<p:outputLabel value="#{msg.lbl_graduatesemester}" />
+					<h:outputText value="#{mbStudent.selectedStudent.graduateSem}" />
+				</p:panelGrid>
+			</p:dialog>
+
+			<p:dialog header="#{msg.lbl_edit}" widgetVar="studentDlg">
+				<p:panelGrid id="editPnl" columns="2">
+
+					<p:outputLabel value="#{msg.lbl_studentid}" />
+					<h:outputText value="#{mbStudent.selectedStudent.studentId}" />
+
+					<p:outputLabel value="#{msg.lbl_studentaname}" />
+					<p:inputText value="#{mbStudent.selectedStudent.aName}" />
+
+					<p:outputLabel value="#{msg.lbl_studentename}" />
+					<p:inputText value="#{mbStudent.selectedStudent.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_mobile}" />
+					<p:inputText value="#{mbStudent.selectedStudent.mobile}" />
+
+					<p:outputLabel value="#{msg.lbl_birthdate}" />
+					<p:calendar value="#{mbStudent.selectedStudent.birthDate}" />
+
+					<p:outputLabel value="#{msg.lbl_sex}" for="sex" />
+					<p:selectOneRadio id="sex" value="#{mbStudent.selectedStudent.sex}">
+						<f:selectItem itemLabel="male" itemValue="male" />
+						<f:selectItem itemLabel="female" itemValue="female" />
+					</p:selectOneRadio>
+
+					<p:outputLabel value="#{msg.lbl_email}" />
+					<p:inputText value="#{mbStudent.selectedStudent.email}" />
+
+					<p:outputLabel value="#{msg.lbl_universityname}" />
+					<h:outputText value="#{mbStudent.selectedStudent.university.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_schoolname}" />
+					<h:outputText value="#{mbStudent.selectedStudent.school.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_programname}" />
+					<h:outputText value="#{mbStudent.selectedStudent.program.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_finalavg}" />
+					<p:inputText value="#{mbStudent.selectedStudent.finalAverage}" />
+
+					<p:outputLabel value="#{msg.lbl_maxavg}" />
+					<p:inputText value="#{mbStudent.selectedStudent.maxAverage}" />
+
+					<p:outputLabel value="#{msg.lbl_rate}" />
+					<p:inputText value="#{mbStudent.selectedStudent.rate}" />
+
+					<p:outputLabel value="#{msg.lbl_graduateyear}" />
+					<p:inputText value="#{mbStudent.selectedStudent.graduateYear}" />
+
+					<p:outputLabel value="#{msg.lbl_graduatesemester}" />
+					<p:inputText value="#{mbStudent.selectedStudent.graduateSem}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.btn_save}" action="#{mbStudent.updateStudent()}" ajax="false" />
+						<p:commandButton value="#{msg.btn_back}" type="button" onclick="PF('studentDlg').hide()" />
+					</f:facet>
+				</p:panelGrid>
+			</p:dialog>
+			<ui:remove>
+				<p:dialog header="send email" widgetVar="sendemailDlg">
+					<p:panelGrid id="sendemailPnl" columns="2">
+						<p:outputLabel value="from" />
+						<p:inputText value="#{mailgctr.fromMail}" />
+
+						<p:outputLabel value="username" />
+						<p:inputText value="#{mailgctr.username}" />
+
+						<p:outputLabel value="password" />
+						<p:password value="#{mailgctr.password}" />
+
+						<p:outputLabel value="to" />
+						<p:inputText value="#{mailgctr.toMail}" />
+
+						<p:outputLabel value="subject" />
+						<p:inputText value="#{mailgctr.subject}" />
+
+						<p:outputLabel value="message" />
+						<p:inputText value="#{mailgctr.message}" />
+
+						<f:facet name="footer">
+							<p:commandButton value="send" action="#{mailgctr.send()}" ajax="false" />
+						</f:facet>
+					</p:panelGrid>
+				</p:dialog>
+			</ui:remove>
+		</h:form>
+	</ui:define>
+</ui:composition>

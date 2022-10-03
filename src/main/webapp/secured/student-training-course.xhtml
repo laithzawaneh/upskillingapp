@@ -1,0 +1,82 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Student Training Course</ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<p:panel>
+				<p:dataTable value="#{mbStudentTC.studentTCTable}" var="e">
+					<f:facet name="header">
+						<h:outputText value="#{msg.btn_studenttrainingcourse}" />
+					</f:facet>
+
+
+					<p:column headerText="#{msg.lbl_studentname}" sortBy="#{e.studentId}">
+						<h:outputText value="#{e.student.eName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_coursename}" sortBy="#{e.courseId}">
+						<h:outputText value="#{e.trainingCourse.eName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_priority}" sortBy="#{e.priority}">
+						<h:outputText value="#{e.priority}" />
+					</p:column>
+
+
+					<p:column headerText="#{msg.lbl_edit}">
+						<p:commandButton value="..." update=":form:editPnl" onclick="PF('studenttcDlg').show()">
+							<f:setPropertyActionListener value="#{e}" target="#{mbStudentTC.selectedStudentTC}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_remove}">
+						<p:commandButton value="X" action="#{mbStudentTC.removeStudentTC()}" ajax="false">
+							<f:setPropertyActionListener value="#{e}" target="#{mbStudentTC.selectedStudentTC}" />
+						</p:commandButton>
+					</p:column>
+
+
+					<f:facet name="footer">
+						<h:outputText value="#{msg.lbl_total} #{mbStudentTC.studentTCTable.size()}" />
+					</f:facet>
+				</p:dataTable>
+			</p:panel>
+
+			<p:dialog header="#{msg.lbl_edit}" widgetVar="studenttcDlg">
+				<p:panelGrid id="editPnl" columns="2">
+					<ui:remove>
+						<p:outputLabel value="#{msg.lbl_studentname}" for="student" />
+						<p:selectOneMenu id="student" value="#{mbAddstudentTC.studentTrainingCourse.student.studentId}" required="true"
+							requiredMessage="Select Student">
+							<f:selectItem itemLabel="Select One" itemValue="" />
+							<f:selectItems value="#{mbAddstudentTC.studentTable}" var="d" itemLabel="#{d.eName}" itemValue="#{d.studentId}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="#{msg.lbl_coursename}" for="course" />
+						<p:selectOneMenu id="course" value="#{mbAddstudentTC.studentTrainingCourse.trainingCourse.courseId}" required="true"
+							requiredMessage="Select Course">
+							<f:selectItem itemLabel="Select One" itemValue="" />
+							<f:selectItems value="#{mbAddstudentTC.courseTable}" var="d" itemLabel="#{d.eName}" itemValue="#{d.courseId}" />
+						</p:selectOneMenu>
+					</ui:remove>
+					<p:outputLabel value="#{msg.lbl_studentname}" />
+					<h:outputText value="#{mbStudentTC.selectedStudentTC.student.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_coursename}" />
+					<h:outputText value="#{mbStudentTC.selectedStudentTC.trainingCourse.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_priority}" />
+					<p:inputText value="#{mbStudentTC.selectedStudentTC.priority}" />
+
+
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.btn_save}" action="#{mbStudentTC.updateStudentTC()}" ajax="false" />
+						<p:commandButton value="#{msg.btn_back}" type="button" onclick="PF('studenttcDlg').hide()" />
+					</f:facet>
+				</p:panelGrid>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

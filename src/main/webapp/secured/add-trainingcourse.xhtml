@@ -1,0 +1,50 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Add Training Course</ui:define>
+	<ui:define name="content">
+		<div align="center">
+			<h:form id="form">
+				<p:growl showDetail="true">
+					<p:autoUpdate />
+				</p:growl>
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_addtrainingcourse}" />
+					</f:facet>
+					<ui:remove>
+						<p:outputLabel value="#{msg.lbl_traningcourserid}" for="id" />
+						<p:inputNumber id="id" value="#{mbAddTrainingCourse.trainingCourse.courseId}" decimalPlaces="0" decimalSeparator=" "
+							thousandSeparator=" " required="true" requiredMessage="Please enter training course id" />
+					</ui:remove>
+					<p:outputLabel value="#{msg.lbl_trainingcourseaname}" for="aName" />
+					<p:inputText id="aName" value="#{mbAddTrainingCourse.trainingCourse.aName}" required="true"
+						requiredMessage="Please enter trainingCourse aName" maxlength="40" validatorMessage="Please check aName" />
+
+					<p:outputLabel value="#{msg.lbl_trainingcourseename}" for="eName" />
+					<p:inputText id="eName" value="#{mbAddTrainingCourse.trainingCourse.eName}" required="true"
+						requiredMessage="Please enter trainingCourse eName" maxlength="40" validatorMessage="Please check eName" />
+
+					<p:outputLabel value="#{msg.lbl_maxstudent}" for="Maxstudent" />
+					<p:inputNumber id="Maxstudent" value="#{mbAddTrainingCourse.trainingCourse.maxStudent}" decimalPlaces="0" decimalSeparator=" "
+						thousandSeparator=" " required="true" requiredMessage="Please enter Max student" />
+
+					<p:outputLabel value="#{msg.lbl_shortdesc}" for="shortd" />
+					<p:inputTextarea id="shortd" value="#{mbAddTrainingCourse.trainingCourse.shortdesc}" required="true"
+						requiredMessage="Please enter short desc" maxlength="50" validatorMessage="Please check short desc" />
+
+					<p:outputLabel value="#{msg.lbl_detileddesc}" for="detiledd" />
+					<p:inputTextarea id="detiledd" value="#{mbAddTrainingCourse.trainingCourse.detailedDesc}" required="true"
+						requiredMessage="Please enter Detiled desc" maxlength="100" validatorMessage="Please check Detiled desc" />
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.btn_save}" action="#{mbAddTrainingCourse.save()}" ajax="false" />
+					</f:facet>
+
+				</p:panelGrid>
+
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

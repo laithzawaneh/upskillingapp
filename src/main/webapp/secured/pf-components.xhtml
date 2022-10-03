@@ -1,0 +1,108 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+	<ui:define name="title">Pf-components</ui:define>
+	<ui:define name="content">
+
+		<h:form>
+			<p:panelGrid columns="2">
+
+				<f:facet name="header">
+
+				</f:facet>
+
+				<p:outputLabel value="Input Text Area" />
+
+				<p:outputLabel value="Effect" />
+				<h:panelGroup>
+					<h:outputText id="h" value="Hamzeh Asefan Asefan" />
+					<p:effect delay="2000" event="load" type="pulsate" for="h" />
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<p:inputTextarea value="#{mbComp.t1}" cols="20" rows="3" autoResize="true" counter="display" maxlength="20"
+						counterTemplate="{0} characters rimaining" />
+					<h:outputText id="display" />
+				</h:panelGroup>
+
+				<p:outputLabel value="keyboard" />
+				<p:keyboard value="#{mbComp.t2}" layout="alphabetic" showMode="button" />
+
+				<p:outputLabel value="Calender" />
+				<p:calendar value="#{mbComp.t3}" />
+
+				<p:outputLabel value="knob" />
+				<p:knob value="#{mbComp.t4}" />
+
+				<ui:remove>
+					<!-- كانها مش مجودة بتنحذف -->
+					<p:outputLabel value="password" />
+					<p:password value="#{mbComp.t5}" feedback="true" />
+				</ui:remove>
+
+				<p:outputLabel value="select Boolean Checkbox" />
+				<p:selectBooleanCheckbox value="#{mbComp.t6}" />
+
+				<p:outputLabel value="select One Radio" />
+				<p:selectOneRadio value="#{mbComp.t7}">
+					<f:selectItem itemLabel="1" itemValue="1" />
+					<f:selectItem itemLabel="2" itemValue="2" />
+					<f:selectItem itemLabel="3" itemValue="3" />
+				</p:selectOneRadio>
+
+				<p:outputLabel value="spinner" />
+				<p:spinner value="#{mbComp.t8}" />
+
+				<p:outputLabel value="slider" />
+				<h:panelGroup>
+					<h:inputText id="number" value="#{mbComp.t9}" />
+					<p:slider for="number" />
+				</h:panelGroup>
+
+				<p:outputLabel value="chips" />
+				<p:chips value="#{mbComp.cities}">
+					<f:selectItem itemLabel="Amman" value="Amman" />
+					<f:selectItem value="Irbid" />
+					<f:selectItem value="mafraq" />
+				</p:chips>
+
+				<p:outputLabel value="Clock" />
+				<p:clock pattern="HH:mm:ss dd.MM.yyyy" />
+
+
+				<p:outputLabel value="Color Picker" />
+				<p:colorPicker value="#{mbComp.color}" mode="inline" />
+
+				<p:outputLabel value="switch" />
+				<p:inputSwitch value="#{mbComp.t10}" />
+
+				<p:outputLabel value=" PieChart" />
+				<p:chart type="pie" model="#{mbComp.model}" />
+
+
+				<f:facet name="footer">
+
+				</f:facet>
+			</p:panelGrid>
+			<p:separator />
+			<p:commandButton value="Submit" action="#{mbComp.submit()}" ajax="false" />
+
+			<p:panelGrid columns="6">
+				<h:outputText value="#{mbComp.t1}" />
+				<h:outputText value="#{mbComp.t2}" />
+				<h:outputText value="#{mbComp.t3}" />
+				<h:outputText value="#{mbComp.t4}" />
+				<h:outputText value="#{mbComp.t5}" />
+				<h:outputText value="#{mbComp.t6}" />
+				<h:outputText value="#{mbComp.t7}" />
+				<h:outputText value="#{mbComp.t8}" />
+				<h:outputText value="#{mbComp.t9}" />
+				<h:outputText value="#{mbComp.cities}" />
+				<h:outputText value="#{mbComp.color}" />
+
+			</p:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+

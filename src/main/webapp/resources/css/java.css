@@ -1,0 +1,131 @@
+@font-face {
+	font-family: 'Noto Kufi Arabic';
+	font-style: normal;
+	font-weight: 400;
+	src: url(/javacourse/resources/fonts/NotoKufiArabic-Regular.ttf)
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'Noto Kufi Arabic';
+	font-style: normal;
+	font-weight: 700;
+	src: url(/javacourse/resources/fonts/NotoKufiArabic-Bold.ttf)
+		format('truetype');
+}
+
+.ui-menu-en {
+	
+}
+
+.ui-menu-en .ui-menuitem {
+	float: left !important;
+}
+
+.ui-menu-en .ui-menuitem-text {
+	float: left !important;
+}
+
+.ui-menu-en .ui-menuitem-child {
+	top: 25px;
+	left: left !important;
+	width: 20em !important;
+}
+
+.ui-menu-en .ui-menuitem-icon {
+	float: left !important;
+}
+
+.ui-menu-ar {
+	
+}
+
+.ui-menu-ar .ui-menuitem {
+	float: right !important;
+}
+
+.ui-menu-ar .ui-menuitem-text {
+	float: right !important;
+}
+
+.ui-menu-ar .ui-menuitem-child {
+	top: 25px;
+	right: right !important;
+	width: 0 !important;
+}
+
+.ui-menu-ar .ui-menuitem-icon {
+	float: right !important;
+}
+
+#himage {
+	width: 100%;
+	height: 100px;
+	align-items: center;
+	background: #ffffff;
+	color: #ffffff;
+}
+
+#pnl_header {
+	background: #ffffff;
+}
+
+#menuForm {
+	border-color: #d01a1a;
+	border-style: none;
+}
+
+.ui-menu.ui-menubar {
+	border-color: #d01a1a;
+}
+
+#contentPnl {
+	border-color: #d01a1a;
+	border-style: groove;
+}
+
+.ui-widget-header.loginForm {
+	background-color: #d01a1a;
+}
+
+.ui-widget {
+	font-size: 0.96em !important;
+	font-family: 'Noto Kufi Arabic', serif;
+}
+
+.ui-widget-header {
+	border: 1px solid #4297d7;
+	border-color: #d01a1a;
+	background: #d01a1a;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.ui-panel-title {
+	margin: 0.1em 0px 0.2em 0 !important;
+}
+
+.ui-panel .ui-panel-footer {
+	text-align: center !important;
+	background: #d01a1a;
+	color: #ffffff;
+}
+
+.ui-growl {
+	right: 50%;
+	margin-right: -150px;
+}
+
+#pnl {
+	width: 100%;
+	height: 100%;
+}
+
+#pnl_footer {
+	margin-bottom: 0px;
+}
+
+.footer {
+	color: white;
+	font-weight: bold;
+}
